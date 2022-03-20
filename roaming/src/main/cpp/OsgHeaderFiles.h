@@ -10,6 +10,7 @@
 #include <string.h>
 #include <vector>
 #include<jni.h>
+#include <assert.h>
 
 //osg
 #include <osg/GL>
