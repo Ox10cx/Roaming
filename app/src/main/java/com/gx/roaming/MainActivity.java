@@ -1,9 +1,7 @@
 package com.gx.roaming;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-
 import com.model.roaming.RoamingSurfaceView;
 
 public class MainActivity extends BaseActivity {

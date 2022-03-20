@@ -126,4 +126,52 @@ USE_SERIALIZER_WRAPPER_LIBRARY(osgText)
 USE_SERIALIZER_WRAPPER_LIBRARY(osgVolume)
 
 
+class CScreenParam
+{
+public:
+    int 					m_nWndWidth;     // view 的宽
+    int 					m_nWndHeight;    // view 的高
+    int 					m_nHdMapWidth;  // 高精度bitmap的宽
+    int 					m_nHdMapHeight; // 高精度bitmap的高
+    float 					m_fHdMapRatio; // ��ͼ��ʾ��Χ����
+    float 					m_fAspect;
+    float                   m_fTilt;
+    float 					m_fCullRatio;
+    float 					m_fScaleWidth;
+    osg::Matrixd			m_VpwMatrix; //��������ת��Ļ�������
+    osg::Matrixd            m_ViewMatrix;/**视图矩阵*/
+    float					m_fVpwAngle;
+    double					m_dVpwSin;
+    double					m_dVpwCos;
+    int                     m_nViewModel;
+    int                     m_nCenterX;  /**地图中心点坐标X*/
+    int                     m_nCenterY; /**地图中心点坐标Y*/
+    float                   m_fCameraoffsetY;
+};
+
+typedef struct tagModelViewMatrix
+{
+    osg::Vec4f m_vPerspective;
+    osg::Vec3f m_vCamera;
+    osg::Vec3f m_vObserve;
+    osg::Vec3f m_vUp;
+    float      m_fMapRatio;
+    float      m_CullRatio;
+    int        m_CameraModel;
+}ModelViewMatrix;
+
+enum EViewModel
+{
+    eViewModel2D = 0,
+    eViewModel3D = 1,
+    eViewModelRoveIndoor=2,
+    eViewModelRoveOutdoor=3,
+    eViewModelNaviIndoor=4,
+    eViewModelNaviOutdoor=5
+};
+
+#define MAX(a,b) ((a) > (b) ? (a):(b))
+#define MIN(a,b) ((a) < (b) ? (a):(b))
+
+
 #endif

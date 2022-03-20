@@ -58,18 +58,33 @@ static const char gFragmentShaderBeiDou[] =
 
 
 
-class OsgMainApp {
-private:
-    osg::ref_ptr<osgViewer::Viewer>                 _viewer;
-    osg::ref_ptr<osg::Group>                        _root;
-    osg::ref_ptr<osgGA::KeySwitchMatrixManipulator> _manipulator;
+class COsgMainApp {
 public:
-    OsgMainApp();
-    void initOsgWindow( int x, int y, int width, int height);
-    void draw();
+    COsgMainApp();
+    ~COsgMainApp();
+    void InitOsgWindow(int width, int height, ModelViewMatrix initModelViewMatrix);
+    void UpdateViewMatrix(ModelViewMatrix updateViewMatrix);
+    void Draw(int nCenterX, int nCenterY , double dScale, float fAngle,float fTile);
 private:
+    void InitParameter(int width, int height, int model);
+    /**
+     * 初始化OsgRoot的节点
+     */
+    void InitOsgRoot();
+    void SetCamera(ModelViewMatrix initModelViewMatrix);
+    void LoadModels(int nCenterX, int nCenterY);
+    void TranslateMap(int nCenterX, int nCenterY,float fAngle,float fTilt);
     osg::ref_ptr<osg::Node> createNode();
-    void loadModels();
+    void CalNodeTexXY(CScreenParam* pScreenParam, double& dX, double& dY);
+private:
+    osg::ref_ptr<osgViewer::Viewer>   m_Viewer;
+    osg::ref_ptr<osg::Camera>         m_rpCamera;
+    // 树最终节点
+    osg::ref_ptr<osg::Group>          m_rpRootOsg;
+    osg::ref_ptr<osg::MatrixTransform>  m_rpPositioned;
+    // 当前场景的父节点
+    osg::ref_ptr<osg::Group>          m_rpRoot;
+    CScreenParam*                     m_pScreenParam;
 
 };
 
