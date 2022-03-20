@@ -48,7 +48,7 @@ public class RoamingSurfaceView extends GLSurfaceView {
     private class SceneRenderer implements GLSurfaceView.Renderer {
         @Override
         public void onDrawFrame(GL10 gl) {
-            RoamingNative.step(0, 0, 1.0, 0, 0);
+            RoamingNative.step(0, 0, 1.0, 30, -40);
             Log.i(TAG, "----onDrawFrame exit");
         }
 

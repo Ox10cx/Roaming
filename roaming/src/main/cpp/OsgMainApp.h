@@ -72,7 +72,7 @@ private:
      */
     void InitOsgRoot();
     void SetCamera(ModelViewMatrix initModelViewMatrix);
-    void LoadModels(int nCenterX, int nCenterY);
+    void LoadModels(int nCenterX, int nCenterY, float fAngle);
     void TranslateMap(int nCenterX, int nCenterY,float fAngle,float fTilt);
     osg::ref_ptr<osg::Node> createNode();
     void CalNodeTexXY(CScreenParam* pScreenParam, double& dX, double& dY);

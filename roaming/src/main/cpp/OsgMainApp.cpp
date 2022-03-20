@@ -122,25 +122,18 @@ void COsgMainApp::Draw(int nCenterX, int nCenterY , double dScale, float fAngle,
     m_pScreenParam->m_nCenterY = nCenterY;
     m_pScreenParam->m_fTilt    =  fTile;
     m_rpRoot->addChild(createNode());
-    LoadModels(nCenterX, nCenterY);
+    LoadModels(nCenterX, nCenterY, fAngle);
     TranslateMap(nCenterX, nCenterY, fAngle, fTile);
     m_Viewer->frame();
-    __android_log_write(ANDROID_LOG_ERROR,  "OSGANDROID",  "Draw");
-//    m_rpRoot->removeChild(0, m_rpRootOsg->getNumChildren());
+    m_rpRoot->removeChild(0, m_rpRootOsg->getNumChildren());
 }
 
 
-
-void COsgMainApp::LoadModels(int nCenterX, int nCenterY) {
-
-    __android_log_write(ANDROID_LOG_ERROR,  "OSGANDROID",  "loadModelsccXXX2");
+void COsgMainApp::LoadModels(int nCenterX, int nCenterY, float fAngle) {
 
     //轮廓面的半径进行屏幕换算
     double      radius  = 0.4;
-
-
     osg::ref_ptr<osgDB::Options>  rpOption = new osgDB::Options(std::string("noTriStripPolygons"));
-
     osg::ref_ptr<osg::Node>  pBuilding = osgDB::readNodeFile("/storage/emulated/0/cicv/OSG/BD/model/car/Model-Jianghuai-iEVS4-100k.obj", rpOption.get());
     LOGI("OnDrawCarModel getModel success ");
     //得到模型的包围盒
@@ -165,7 +158,7 @@ void COsgMainApp::LoadModels(int nCenterX, int nCenterY) {
     float dZDeep = 0.0f;
     positioned->setMatrix(osg::Matrix::translate(-bs.center()) *
     osg::Matrix::rotate(osg::inDegrees(-90.0f), 1.0f, 0.0f, 0.0f) *
-    osg::Matrix::rotate(osg::inDegrees(90.0f), 0.0f, 1.0f, 0.0f) *
+    osg::Matrix::rotate(osg::inDegrees( 90.0f), 0.0f, 1.0f, 0.0f) *
     osg::Matrix::scale(size, size, size) *
     osg::Matrix::translate(fX,(-boundingBox.zMin()+bs.center().z()+dZDeep)*size, fY));
 
